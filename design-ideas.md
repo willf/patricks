@@ -27,23 +27,24 @@ RX.new (
         two_hundred: /2[0-4]\d/.
         one_hundred: /1\d\d/.
         sub_hundred:  /0?\d\d/,
-        octet: alt(:two_fifty, :two_hundred, :one_hundred, :sub_hundred),
-        address: .first(octet)
+        octet: RX.alt(:two_fifty, :two_hundred, :one_hundred, :sub_hundred),
+        address: RX.first(:octet)
                  .then('.')
-                 .then(octet)
+                 .then(:octet)
                  .then('.')
-                 .then(octet),
-        subnet: first('/')
+                 .then(:octet),
+        subnet: RX.first('/')
                 .then(:octet)
                 .maybe(
-                     first('.')
+                     RX.first('.')
                     .then(:octet)
                     .maybe(
-                        first('.')
+                        RX.first('.')
                         .then(:octet)))
 
     },
-    )
+    ).first(:address)
+     .maybe(:subnet)
   
 ```
 
