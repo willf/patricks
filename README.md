@@ -1,2 +1,2 @@
 # patricks
-Pattern Tricks
+Pattern Tricks for Ruby
