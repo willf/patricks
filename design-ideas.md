@@ -25,7 +25,7 @@ RX.new (
     subpatterns: {
         two_fifty: /25[0-5]/,
         two_hundred: /2[0-4]\d/.
-        one_hundred: /1\d\d/.
+        one_hundred: /1\d\d/,
         sub_hundred:  /0?\d\d/,
         octet: RX.alt(:two_fifty, :two_hundred, :one_hundred, :sub_hundred),
         address: RX.first(:octet)
